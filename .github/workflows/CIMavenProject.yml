@@ -1,9 +1,15 @@
 name: CI Maven Workflow
+
 on:
   workflow_dispatch:
+    inputs:
+      TARGET_ENVIRONMENT:
+        type: environment
+        default: dev
 jobs:
   CI_Non-containerization_build:
     runs-on: ubuntu-latest
+    environment: ${{ inputs.TARGET_ENVIRONMENT }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4.2.0
