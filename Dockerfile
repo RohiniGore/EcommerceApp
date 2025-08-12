@@ -13,7 +13,7 @@ COPY EcommerceApp/pom.xml .
 RUN chmod +x mvnw
  
 # Download dependencies
-RUN ./mvnw dependency:go-offline
+RUN mvn dependency:go-offline
  
 # Copy the source code
 COPY EcommerceApp/src ./src
