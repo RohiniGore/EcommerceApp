@@ -6,7 +6,7 @@ WORKDIR /EcommerceApp
  
 # Copy Maven wrapper and pom.xml
 COPY EcommerceApp/pom.xml .
-COPY EcommerceApp/.mvn .mvn
+
 
  
 # Fix permission issue for mvnw
