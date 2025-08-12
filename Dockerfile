@@ -31,7 +31,7 @@ WORKDIR /ecommerce-app
 COPY --from=build /ecommerce-app/target/*.jar ecommerce-app.jar
  
 # Expose the application port
-EXPOSE 9091
+EXPOSE 8083
  
 # Run the Spring Boot application
 ENTRYPOINT ["java", "-jar", "ecommerce-app.jar"]
