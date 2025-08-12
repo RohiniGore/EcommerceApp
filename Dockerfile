@@ -2,12 +2,12 @@
 FROM maven:3.9.4-eclipse-temurin-17 AS build
  
 # Set working directory inside the container
-WORKDIR /ecommerce-app
+WORKDIR /EcommerceApp
  
 # Copy Maven wrapper and pom.xml
-COPY ecommerce-app/pom.xml .
-COPY ecommerce-app/.mvn .mvn
-COPY ecommerce-app/mvnw .
+COPY EcommerceApp/pom.xml .
+COPY EcommerceApp/.mvn .mvn
+
  
 # Fix permission issue for mvnw
 RUN chmod +x mvnw
@@ -16,7 +16,7 @@ RUN chmod +x mvnw
 RUN ./mvnw dependency:go-offline
  
 # Copy the source code
-COPY ecommerce-app/src ./src
+COPY EcommerceApp/src ./src
  
 # Build the application
 RUN ./mvnw clean package -DskipTests
@@ -25,13 +25,13 @@ RUN ./mvnw clean package -DskipTests
 FROM eclipse-temurin:17-jdk-alpine
  
 # Set working directory
-WORKDIR /ecommerce-app
+WORKDIR /EcommerceApp
  
 # Copy the built jar file
-COPY --from=build /ecommerce-app/target/*.jar ecommerce-app.jar
+COPY --from=build /ecommerce-app/target/*.jar EcommerceApp.jar
  
 # Expose the application port
 EXPOSE 8083
  
 # Run the Spring Boot application
-ENTRYPOINT ["java", "-jar", "ecommerce-app.jar"]
+ENTRYPOINT ["java", "-jar", "EcommerceApp.jar"]
